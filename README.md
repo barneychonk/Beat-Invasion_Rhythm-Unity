@@ -2,6 +2,8 @@
 
 **Beat Invasion** is a Unity-based rhythm game demonstrating core gameplay mechanics such as timing-based note hits, movement logic, and audio synchronization. The build included in this repository allows players to experience the full game and test the rhythm mechanics.
 
+Beat invasion was made as part of our Object Orientation Programming subject Group Project.
+
 ### Gameplay Demo
 [![Gameplay Video](http://img.youtube.com/vi/mFOqnpyjhA8/0.jpg)](https://youtu.be/mFOqnpyjhA8)
 
