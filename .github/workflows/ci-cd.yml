@@ -1,0 +1,41 @@
+name: CI/CD Pipeline
+
+# 1. Trigger the pipeline on specific Git events
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# 2. Define execution stages
+jobs:
+  # Continuous Integration (CI) Stage
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install Dependencies
+      run: npm ci
+
+    - name: Run Tests
+      run: npm test
+
+  # Continuous Delivery/Deployment (CD) Stage
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-test # Only runs if the testing job passes successfully
+    if: github.event_name == 'push' # Only deploy on actual merges/pushes, not PRs
+
+    steps:
+    - name: Deploy Application
+      run: |
+        echo "Deploying to production environment..."
+        # Add your production deployment commands here (e.g., AWS, Vercel, Docker Hub)
